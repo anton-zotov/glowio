@@ -5,6 +5,7 @@
     import Text from './settings/text';
     import ParticleSize from './settings/particle-size';
     import FontSize from './settings/font-size';
+    import ParticlesPerPixel from './settings/particles-per-pixel';
 
     let expanded = true;
     let config = { ...defaultConfig };
@@ -48,6 +49,10 @@
 
     <div class="config-block">
         <FontSize {config} on:change={handleConfigChange} />
+    </div>
+
+    <div class="config-block">
+        <ParticlesPerPixel {config} on:change={handleConfigChange} />
     </div>
 </aside>
 <MenuToggle {expanded} on:toggle={handleToggle} />
