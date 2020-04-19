@@ -4,9 +4,9 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "start": "webpack-dev-server --content-base dist --open --config webpack.config.js",
+        "build": "cross-env NODE_ENV=production webpack",
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "webpack-dev-server --open --config webpack.dev.js",
-        "build": "webpack --config webpack.prod.js",
         "predeploy": "npm run build",
         "deploy": "gh-pages -d dist"
     },
@@ -17,8 +17,14 @@
         "pixi.js": "^5.2.1"
     },
     "devDependencies": {
+        "cross-env": "^7.0.2",
+        "css-loader": "^3.5.2",
         "file-loader": "^6.0.0",
         "gh-pages": "^2.2.0",
+        "mini-css-extract-plugin": "^0.9.0",
+        "style-loader": "^1.1.4",
+        "svelte": "^3.20.1",
+        "svelte-loader": "^2.13.6",
         "webpack": "^4.42.1",
         "webpack-cli": "^3.3.11",
         "webpack-dev-server": "^3.10.3",
