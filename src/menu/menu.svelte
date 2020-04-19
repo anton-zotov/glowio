@@ -2,6 +2,7 @@
     import { resize, defaultConfig, updateConfig } from '../particle-system';
     import MenuToggle from './menu-toggle';
     import Text from './settings/text';
+    import ParticleSize from './settings/particle-size';
 
     let expanded = true;
     let config = { ...defaultConfig };
@@ -24,10 +25,23 @@
     .hidden {
         display: none;
     }
+
+    .config-block {
+        padding-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+    }
 </style>
 
 <aside id="menu" class={expanded ? '' : 'hidden'}>
     <h1>Glowio</h1>
-    <Text {config} on:change={handleConfigChange} />
+
+    <div class="config-block">
+        <Text {config} on:change={handleConfigChange} />
+    </div>
+
+    <div class="config-block">
+        <ParticleSize {config} on:change={handleConfigChange} />
+    </div>
 </aside>
 <MenuToggle {expanded} on:toggle={handleToggle} />

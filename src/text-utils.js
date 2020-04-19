@@ -1,23 +1,35 @@
-const width = 500;
-const height = 40;
+const canvasWidth = 500;
+const canvasHeight = 40;
 
-const canvas = new OffscreenCanvas(width, height);
+const canvas = new OffscreenCanvas(canvasWidth, canvasHeight);
 const ctx = canvas.getContext('2d');
 
 export function getTextMatrix(text) {
     drawText(text);
 
-    const imageData = ctx.getImageData(0, 0, width, height).data;
+    const imageData = ctx.getImageData(0, 0, canvasWidth, canvasHeight).data;
     const textMatrix = [];
+    let x1 = null,
+        x2 = null;
+    let pixels = 0;
 
-    for (let x = 0; x < width; x++) {
+    for (let x = 0; x < canvasWidth; x++) {
         textMatrix.push([]);
-        for (let y = 0; y < height; y++) {
-            textMatrix[x].push(hasColor(x, y, width, imageData));
+        for (let y = 0; y < canvasHeight; y++) {
+            let bit = hasColor(x, y, canvasWidth, imageData);
+            textMatrix[x].push(bit);
+            if (bit) {
+                if (x1 === null) x1 = x;
+                x2 = x;
+                pixels++;
+            }
         }
     }
 
-    return textMatrix;
+    let width = x2 ? x2 - x1 + 1 : 0;
+    let center = x2 ? Math.round(x2 / x1 / 2) : 0;
+
+    return { x1, x2, center, width, textMatrix, pixels };
 }
 
 function drawText(text) {

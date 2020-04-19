@@ -4,10 +4,12 @@ import { getTextMatrix } from './text-utils';
 
 export const defaultConfig = {
     text: 'Hello glowio',
+    particleSize: 5,
 };
 
 let config = { ...defaultConfig };
 
+const particleSize = 50;
 const theater = document.getElementById('theater');
 const app = new PIXI.Application({
     resizeTo: theater,
@@ -39,8 +41,6 @@ function resetScene() {
 }
 
 function clearScene() {
-    console.log('clearScene');
-
     for (let particle of particles) {
         app.stage.removeChild(particle);
     }
@@ -48,17 +48,18 @@ function clearScene() {
 }
 
 function displayText() {
-    const textMatrix = getTextMatrix(config.text);
+    const { textMatrix } = getTextMatrix(config.text);
 
     for (let x = 0; x < textMatrix.length; x++) {
         for (let y = 0; y < textMatrix[0].length; y++) {
             if (textMatrix[x][y]) {
                 const circle = new PIXI.Sprite(circleTexture);
+
                 circle.anchor.set(0.5);
-                circle.x = x * 3 + 100;
-                circle.y = y * 3 + 200;
+                circle.x = x + 100;
+                circle.y = y + 200;
                 circle.tint = Math.random() * 0x0000ff + 0x00ff00;
-                circle.scale.set(0.3);
+                circle.scale.set(config.particleSize / particleSize);
                 circle.alpha = 0.8;
                 circle.vxMax = Math.random() * 4 - 1;
                 circle.vyMax = Math.random() * 4 - 1;
