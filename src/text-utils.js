@@ -1,21 +1,13 @@
-const textCanvas = document.getElementById('text-canvas');
-const textCtx = textCanvas.getContext('2d');
+const width = 500;
+const height = 40;
 
-const width = textCanvas.width;
-const height = textCanvas.height;
-
-function drawText(text) {
-    textCtx.font = '30px Arial';
-    textCtx.fillStyle = 'black';
-    textCtx.fillRect(0, 0, textCanvas.width, textCanvas.height);
-    textCtx.fillStyle = 'white';
-    textCtx.fillText(text, 0, 30);
-}
+const canvas = new OffscreenCanvas(width, height);
+const ctx = canvas.getContext('2d');
 
 export function getTextMatrix(text) {
     drawText(text);
 
-    const imageData = textCtx.getImageData(0, 0, width, height).data;
+    const imageData = ctx.getImageData(0, 0, width, height).data;
     const textMatrix = [];
 
     for (let x = 0; x < width; x++) {
@@ -28,13 +20,21 @@ export function getTextMatrix(text) {
     return textMatrix;
 }
 
+function drawText(text) {
+    ctx.font = '30px Arial';
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0, 0, 500, 40);
+    ctx.fillStyle = 'white';
+    ctx.fillText(text, 0, 30);
+}
+
 function getColor(x, y, width, imageData) {
-    let redPos = y * (width * 4) + x * 4;
+    const redPos = y * (width * 4) + x * 4;
     return [imageData[redPos], imageData[redPos + 1], imageData[redPos + 2]];
 }
 
 function hasColor(x, y, width, imageData) {
     const threshold = 127;
-    let redPos = y * (width * 4) + x * 4;
+    const redPos = y * (width * 4) + x * 4;
     return imageData[redPos] >= threshold ? 1 : 0;
 }

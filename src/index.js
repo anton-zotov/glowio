@@ -1,10 +1,7 @@
-import App from './App.svelte';
+import './main.css';
+import Menu from './menu/menu.svelte';
 import './particle-system';
 
-const app = new App({
-    target: document.getElementById('svelte'),
+new Menu({
+    target: document.body
 });
-
-window.app = app;
-
-export default app;

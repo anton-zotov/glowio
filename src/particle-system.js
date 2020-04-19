@@ -1,10 +1,15 @@
 import * as PIXI from 'pixi.js';
 import particle from './assets/particle.png';
-import { getTextMatrix } from './text';
+import { getTextMatrix } from './text-utils';
 
-const app = new PIXI.Application();
+const theater = document.getElementById('theater');
+const app = new PIXI.Application({
+    resizeTo: theater,
+});
 
-document.body.appendChild(app.view);
+theater.appendChild(app.view);
+
+resize();
 
 const texture = PIXI.Texture.from(particle);
 
@@ -62,5 +67,11 @@ app.ticker.add(() => {
     }
 
     frame = (frame + 1) % 1000000000;
-    s = s + Math.PI / 51 * 3;
+    s = s + (Math.PI / 51) * 3;
 });
+
+export function resize() {
+    setTimeout(() => {
+        app.resize();
+    });
+}
