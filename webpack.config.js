@@ -42,15 +42,16 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    prod ? MiniCssExtractPlugin.loader : 'style-loader',
+                    'style-loader',
+                    // prod ? MiniCssExtractPlugin.loader : 'style-loader',
                     'css-loader',
                 ],
             },
         ],
     },
-    plugins: [
-        new MiniCssExtractPlugin({
-            filename: '[name].css',
-        }),
-    ],
+    // plugins: [
+    //     new MiniCssExtractPlugin({
+    //         filename: '[name].css',
+    //     }),
+    // ],
 };
