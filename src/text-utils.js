@@ -1,11 +1,11 @@
-const canvasWidth = 500;
-const canvasHeight = 40;
+const canvasWidth = 1000;
+const canvasHeight = 100;
 
 const canvas = new OffscreenCanvas(canvasWidth, canvasHeight);
 const ctx = canvas.getContext('2d');
 
-export function getTextMatrix(text) {
-    drawText(text);
+export function getTextMatrix({ text, fontSize }) {
+    drawText(text, fontSize);
 
     const imageData = ctx.getImageData(0, 0, canvasWidth, canvasHeight).data;
     const textMatrix = [];
@@ -32,12 +32,12 @@ export function getTextMatrix(text) {
     return { x1, x2, center, width, textMatrix, pixels };
 }
 
-function drawText(text) {
-    ctx.font = '30px Arial';
+function drawText(text, fontSize) {
+    ctx.font = `${fontSize}px Arial`;
     ctx.fillStyle = 'black';
-    ctx.fillRect(0, 0, 500, 40);
+    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
     ctx.fillStyle = 'white';
-    ctx.fillText(text, 0, 30);
+    ctx.fillText(text, 0, canvasHeight - 20);
 }
 
 function getColor(x, y, width, imageData) {

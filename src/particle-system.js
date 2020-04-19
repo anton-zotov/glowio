@@ -4,6 +4,7 @@ import { createScene } from './scene';
 export const defaultConfig = {
     text: 'Hello glowio',
     particleSize: 5,
+    fontSize: 30,
 };
 
 let config = { ...defaultConfig };
@@ -25,7 +26,7 @@ export function updateScene() {
 }
 
 function displayText() {
-    const { textMatrix } = getTextMatrix(config.text);
+    const { textMatrix } = getTextMatrix(config);
 
     for (let x = 0; x < textMatrix.length; x++) {
         for (let y = 0; y < textMatrix[0].length; y++) {

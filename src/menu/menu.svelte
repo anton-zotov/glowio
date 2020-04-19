@@ -4,6 +4,7 @@
     import MenuToggle from './menu-toggle';
     import Text from './settings/text';
     import ParticleSize from './settings/particle-size';
+    import FontSize from './settings/font-size';
 
     let expanded = true;
     let config = { ...defaultConfig };
@@ -43,6 +44,10 @@
 
     <div class="config-block">
         <ParticleSize {config} on:change={handleConfigChange} />
+    </div>
+
+    <div class="config-block">
+        <FontSize {config} on:change={handleConfigChange} />
     </div>
 </aside>
 <MenuToggle {expanded} on:toggle={handleToggle} />
