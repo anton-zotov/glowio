@@ -44,7 +44,7 @@ function displayText() {
             if (textMatrix[x][y]) {
                 let chance = particlePerPixel;
                 while (chance > 0) {
-                    if (chance >= 1 || Math.random() >= chance) {
+                    if (chance >= 1 || chance >= Math.random()) {
                         scene.addParticle(x, y, config);
                         chance -= 1;
                     } else break;
