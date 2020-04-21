@@ -7,6 +7,8 @@ export const defaultConfig = {
     particleSize: 5,
     fontSize: 30,
     particlePer100Pixels: 100,
+    color: '#00ff90',
+    colorVariation: 5
 };
 
 let config = { ...defaultConfig };

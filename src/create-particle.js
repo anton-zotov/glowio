@@ -1,6 +1,7 @@
 import * as PIXI from 'pixi.js';
 import particle from './assets/particle.png';
 import { initParticle1 } from './particle-movement/type1';
+import { colorVariation } from './utils';
 
 const particleImageSize = 50;
 const circleTexture = PIXI.Texture.from(particle);
@@ -13,7 +14,7 @@ export function createParticle(x, y, config) {
     particle.y = y + 200;
     particle.scale.set(config.particleSize / particleImageSize);
     particle.alpha = 0.8;
-    particle.tint = Math.random() * 0x0000ff + 0x00ff00;
+    particle.tint = colorVariation(config.color, config.colorVariation);
 
     initParticle1(particle);
 

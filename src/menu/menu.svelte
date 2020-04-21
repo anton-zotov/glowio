@@ -6,6 +6,7 @@
     import ParticleSize from './settings/particle-size';
     import FontSize from './settings/font-size';
     import ParticlesPerPixel from './settings/particles-per-pixel';
+    import Color from './settings/color';
 
     let expanded = true;
     let config = { ...defaultConfig };
@@ -33,6 +34,7 @@
         padding-bottom: 10px;
         display: flex;
         justify-content: space-between;
+        align-items: center;
     }
 </style>
 
@@ -53,6 +55,10 @@
 
     <div class="config-block">
         <ParticlesPerPixel {config} on:change={handleConfigChange} />
+    </div>
+
+    <div class="config-block">
+        <Color {config} on:change={handleConfigChange} />
     </div>
 </aside>
 <MenuToggle {expanded} on:toggle={handleToggle} />
