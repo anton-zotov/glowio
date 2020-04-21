@@ -2,8 +2,8 @@
     import { createEventDispatcher } from 'svelte';
 
     export let config;
-    const min = 1;
-    const max = 100;
+    const min = 10;
+    const max = 300;
     const dispatch = createEventDispatcher();
 
     function handleChange() {

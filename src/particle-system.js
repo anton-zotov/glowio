@@ -5,8 +5,8 @@ import { debounce } from './utils';
 export const defaultConfig = {
     text: 'Hello glowio',
     particleSize: 5,
-    fontSize: 30,
-    particlePer100Pixels: 100,
+    fontSize: 100,
+    particlePer100Pixels: 50,
     color: '#00ff90',
     colorVariation: 5
 };

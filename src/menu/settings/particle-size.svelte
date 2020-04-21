@@ -3,7 +3,7 @@
 
     export let config;
     const min = 1;
-    const max = 200;
+    const max = 50;
     const dispatch = createEventDispatcher();
 
     function handleChange() {
