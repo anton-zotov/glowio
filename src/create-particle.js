@@ -13,7 +13,7 @@ export function createParticle(x, y, config) {
     particle.x = x + 100;
     particle.y = y + 200;
     particle.scale.set(config.particleSize / particleImageSize);
-    particle.alpha = 0.8;
+    particle.alpha = (config.opacityMin + Math.random() * (config.opacityMax - config.opacityMin)) / 100;
     particle.tint = colorVariation(config.color, config.colorVariation);
 
     initParticle1(particle);

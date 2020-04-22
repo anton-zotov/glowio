@@ -7,6 +7,7 @@
     import FontSize from './settings/font-size';
     import ParticlesPerPixel from './settings/particles-per-pixel';
     import Color from './settings/color';
+    import Opacity from './settings/opacity';
 
     let expanded = true;
     let config = { ...defaultConfig };
@@ -59,6 +60,10 @@
 
     <div class="config-block">
         <Color {config} on:change={handleConfigChange} />
+    </div>
+
+    <div class="config-block">
+        <Opacity {config} on:change={handleConfigChange} />
     </div>
 </aside>
 <MenuToggle {expanded} on:toggle={handleToggle} />

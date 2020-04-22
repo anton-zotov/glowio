@@ -8,7 +8,9 @@ export const defaultConfig = {
     fontSize: 100,
     particlePer100Pixels: 50,
     color: '#00ff90',
-    colorVariation: 5
+    colorVariation: 5,
+    opacityMin: 60,
+    opacityMax: 90,
 };
 
 let config = { ...defaultConfig };

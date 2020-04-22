@@ -1,5 +1,5 @@
-const canvasWidth = 1000;
-const canvasHeight = 100;
+const canvasWidth = 2000;
+const canvasHeight = 500;
 
 const canvas = new OffscreenCanvas(canvasWidth, canvasHeight);
 const ctx = canvas.getContext('2d');
@@ -37,7 +37,7 @@ function drawText(text, fontSize) {
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
     ctx.fillStyle = 'white';
-    ctx.fillText(text, 0, canvasHeight - 20);
+    ctx.fillText(text, 0, canvasHeight - 100);
 }
 
 function getColor(x, y, width, imageData) {
