@@ -8,6 +8,7 @@
     import ParticlesPerPixel from './settings/particles-per-pixel';
     import Color from './settings/color';
     import Opacity from './settings/opacity';
+    import HorizontalSine from './movement/horizontal-sine';
 
     let expanded = true;
     let config = { ...defaultConfig };
@@ -69,6 +70,9 @@
 
 	<h2>Movement</h2>
 
+    <div class="config-block">
+        <HorizontalSine {config} on:change={handleConfigChange} />
+    </div>
 	
 </aside>
 <MenuToggle {expanded} on:toggle={handleToggle} />

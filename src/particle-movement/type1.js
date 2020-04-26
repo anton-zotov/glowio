@@ -1,5 +1,5 @@
 function updateParticle1(frame, s, sign) {
-    this.x += this.vx;
+    // this.x += this.vx;
     this.y += this.vy;
 
     this.vx = Math.cos(s + this.offset) * (this.vxMax - this.vxMax / 2);

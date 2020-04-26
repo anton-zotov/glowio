@@ -21,22 +21,8 @@
     }
 </script>
 
-<style>
-    .two-lines {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .two-lines div {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-</style>
-
-<div class="two-lines">
-    <div>
+<div class="multi-line">
+    <div class="row">
         <label class="row-label">Opacity min</label>
         <RangeInput
             {config}
@@ -46,7 +32,7 @@
             on:change={handleMinChange} />
     </div>
 
-    <div>
+    <div class="row">
         <label class="row-label">Opacity max</label>
         <RangeInput
             {config}

@@ -10,7 +10,10 @@ export const defaultConfig = {
     color: '#00ff90',
     colorVariation: 5,
     opacityMin: 60,
-    opacityMax: 90,
+	opacityMax: 90,
+	enableHorizontalSine: true,
+	horizontalSineAmplitude: 10,
+	horizontalSinePeriod: 100,
 };
 
 let config = { ...defaultConfig };
