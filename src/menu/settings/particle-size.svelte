@@ -16,7 +16,7 @@
 
 </style>
 
-Particle size 
+<label class="row-label">Particle size</label>
 <input
     type="range"
     {min}

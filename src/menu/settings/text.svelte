@@ -13,4 +13,5 @@
 
 </style>
 
+<label class="row-label">Text</label>
 <input bind:value={config.text} on:input={handleChange} />

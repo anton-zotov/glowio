@@ -7,7 +7,8 @@
     const dispatch = createEventDispatcher();
 
     function handleChange() {
-        if (config.particlePer100Pixels > max) config.particlePer100Pixels = max;
+        if (config.particlePer100Pixels > max)
+            config.particlePer100Pixels = max;
         dispatch('change');
     }
 </script>
@@ -16,7 +17,7 @@
 
 </style>
 
-Particles per 100 pixels
+<label class="row-label">Particles per 100 pixels</label>
 <input
     type="range"
     {min}

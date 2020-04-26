@@ -36,7 +36,7 @@
 
 <div class="two-lines">
     <div>
-        Opacity min
+        <label class="row-label">Opacity min</label>
         <input
             type="range"
             {min}
@@ -53,7 +53,7 @@
     </div>
 
     <div>
-        Opacity max
+        <label class="row-label">Opacity max</label>
         <input
             type="range"
             {min}

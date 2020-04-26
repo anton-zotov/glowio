@@ -16,7 +16,7 @@
 
 </style>
 
-Font size 
+<label class="row-label">Font size</label>
 <input
     type="range"
     {min}

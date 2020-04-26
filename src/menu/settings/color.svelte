@@ -17,8 +17,10 @@
     }
 </style>
 
-Color
-<input type="color" bind:value={config.color} on:input={handleChange} />
+
+    Color
+    <input type="color" bind:value={config.color} on:input={handleChange} />
+
 
 Variation
 <input

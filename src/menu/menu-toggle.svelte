@@ -12,16 +12,16 @@
 <style>
     button {
         position: absolute;
-        width: 40px;
-        height: 40px;
         top: 0px;
         left: 0px;
+        width: 40px;
+        height: 40px;
         font-size: 26px;
         line-height: 30px;
     }
 
     .expanded {
-        left: 260px;
+        left: 237px;
     }
 </style>
 

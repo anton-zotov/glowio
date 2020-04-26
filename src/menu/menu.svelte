@@ -24,7 +24,8 @@
 
 <style>
     h1 {
-        color: purple;
+		color: purple;
+		padding-bottom: 20px;
     }
 
     .hidden {
@@ -36,7 +37,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-    }
+	}
 </style>
 
 <aside id="menu" class={expanded ? '' : 'hidden'}>
@@ -65,5 +66,9 @@
     <div class="config-block">
         <Opacity {config} on:change={handleConfigChange} />
     </div>
+
+	<h2>Movement</h2>
+
+	
 </aside>
 <MenuToggle {expanded} on:toggle={handleToggle} />
