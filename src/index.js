@@ -13,7 +13,7 @@ const app = new PIXI.Application({
 });
 
 theater.appendChild(app.view);
-resizeTheater();
+app.resize();
 
 app.ticker.add(() => {
 	updateScene();
