@@ -44,3 +44,7 @@ input[type='range'] {
 .config-block > .row-label {
 	width: 90px;
 }
+
+.short-range {
+	width: 40px;
+}

@@ -2,14 +2,14 @@ function updateParticle1(frame, s, sign) {
     this.x += this.vx;
     this.y += this.vy;
 
-    this.vx = Math.cos(s + this.offset) * this.vxMax;
-    this.vy = Math.sin(s + this.offset) * this.vyMax;
+    this.vx = Math.cos(s + this.offset) * (this.vxMax - this.vxMax / 2);
+    this.vy = Math.sin(s + this.offset) * (this.vyMax - this.vyMax / 2);
 
-    this.x += this.vx2;
-    this.y += this.vy2;
+    // this.x += this.vx2;
+    // this.y += this.vy2;
 
-    this.vx2 += this.ax2 * sign;
-    this.vy2 += this.ay2 * sign;
+    // this.vx2 += this.ax2 * sign;
+    // this.vy2 += this.ay2 * sign;
 }
 
 export function initParticle1(particle) {

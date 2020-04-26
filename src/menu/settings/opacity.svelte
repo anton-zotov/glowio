@@ -1,4 +1,5 @@
 <script>
+    import RangeInput from '../components/range-input';
     import { createEventDispatcher } from 'svelte';
 
     export let config;
@@ -37,35 +38,21 @@
 <div class="two-lines">
     <div>
         <label class="row-label">Opacity min</label>
-        <input
-            type="range"
-            {min}
-            {max}
-            bind:value={config.opacityMin}
-            on:input={handleMinChange} />
-        <input
-            type="number"
-            {min}
-            {max}
-            maxlength="3"
-            bind:value={config.opacityMin}
-            on:input={handleMinChange} />
+        <RangeInput
+            {config}
+            property={'opacityMin'}
+            min={1}
+            max={100}
+            on:change={handleMinChange} />
     </div>
 
     <div>
         <label class="row-label">Opacity max</label>
-        <input
-            type="range"
-            {min}
-            {max}
-            bind:value={config.opacityMax}
-            on:input={handleMaxChange} />
-        <input
-            type="number"
-            {min}
-            {max}
-            maxlength="3"
-            bind:value={config.opacityMax}
-            on:input={handleMaxChange} />
+        <RangeInput
+            {config}
+            property={'opacityMax'}
+            min={1}
+            max={100}
+            on:change={handleMaxChange} />
     </div>
 </div>
