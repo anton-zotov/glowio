@@ -21,7 +21,7 @@ function doUpdate() {
     displayText();
 }
 
-const scheduleUpdate = debounce(doUpdate, 500);
+export const scheduleUpdate = debounce(doUpdate, 500);
 
 export function init(app) {
     scene = createScene(app);
@@ -38,8 +38,12 @@ export function updateScene() {
 }
 
 function displayText() {
-    const { textMatrix } = getTextMatrix(config);
-    const particlePerPixel = config.particlePer100Pixels / 100;
+    const { textMatrix, centerX, centerY, height } = getTextMatrix(config);
+	const particlePerPixel = config.particlePer100Pixels / 100;
+	const screenCX = scene.getWidth() / 2;
+	const screenCY = scene.getHeight() / 2;
+	const offsetX = screenCX - centerX;
+	const offsetY = screenCY - centerY;
 
     for (let x = 0; x < textMatrix.length; x++) {
         for (let y = 0; y < textMatrix[0].length; y++) {
@@ -47,7 +51,7 @@ function displayText() {
                 let chance = particlePerPixel;
                 while (chance > 0) {
                     if (chance >= 1 || chance >= Math.random()) {
-                        scene.addParticle(x, y, config);
+                        scene.addParticle(x + offsetX, y + offsetY, config);
                         chance -= 1;
                     } else break;
                 }

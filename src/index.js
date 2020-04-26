@@ -1,28 +1,33 @@
 import * as PIXI from 'pixi.js';
 import './main.css';
 import Menu from './menu/menu.svelte';
-import { init, updateScene } from './particle-system';
+import { init, updateScene, scheduleUpdate } from './particle-system';
 
 new Menu({
-    target: document.body,
+	target: document.body,
 });
 
 const theater = document.getElementById('theater');
 const app = new PIXI.Application({
-    resizeTo: theater,
+	resizeTo: theater,
 });
 
 theater.appendChild(app.view);
 resizeTheater();
 
 app.ticker.add(() => {
-    updateScene();
+	updateScene();
 });
 
 init(app);
 
+window.addEventListener("resize", () => {
+	scheduleUpdate();
+});
+
 export function resizeTheater() {
-    setTimeout(() => {
-        app.resize();
-    });
+	setTimeout(() => {
+		app.resize();
+		scheduleUpdate();
+	});
 }

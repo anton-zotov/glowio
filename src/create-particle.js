@@ -10,8 +10,8 @@ export function createParticle(x, y, config) {
     const particle = new PIXI.Sprite(circleTexture);
 
     particle.anchor.set(0.5);
-    particle.x = x + 100;
-    particle.y = y + 200;
+    particle.x = x;
+    particle.y = y;
     particle.scale.set(config.particleSize / particleImageSize);
     particle.alpha = (config.opacityMin + Math.random() * (config.opacityMax - config.opacityMin)) / 100;
     particle.tint = colorVariation(config.color, config.colorVariation);

@@ -35,7 +35,15 @@ export function createScene(app) {
             app.stage.removeChild(particle);
         }
         particles = [];
-    }
+	}
+	
+	function getWidth() {
+		return app.renderer.width;
+	}
 
-    return { reset, update, addParticle };
+	function getHeight() {
+		return app.renderer.height;
+	}
+
+    return { reset, update, addParticle, getWidth, getHeight };
 }
