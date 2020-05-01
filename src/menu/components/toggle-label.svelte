@@ -12,7 +12,6 @@
 
 <style>
 	.label {
-		font-size: 16px;
 		line-height: 20px;
 		padding-bottom: 10px;
 		user-select: none;

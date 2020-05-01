@@ -33,9 +33,22 @@
 </script>
 
 <style>
-	h1 {
-		color: purple;
-		padding-bottom: 20px;
+	.title {
+		padding-bottom: 14px;
+		padding-right: 32px;
+		font-size: 36px;
+		color: #fff;
+		text-align: center;
+		animation: glow 0.8s ease-in-out infinite alternate;
+	}
+
+	@keyframes glow {
+		from {
+			text-shadow: 0 0 5px #fff;
+		}
+		to {
+			text-shadow: 0 0 20px #fff;
+		}
 	}
 
 	.hidden {
@@ -48,53 +61,62 @@
 		justify-content: space-between;
 		align-items: center;
 	}
+
+	.settings-container {
+		flex-grow: 1;
+		padding: 0 8px 8px 8px;
+		overflow-y: auto;
+	}
 </style>
 
 <aside id="menu" class={expanded ? '' : 'hidden'}>
-	<h1>Glowio</h1>
+	<h1 class="title">Glowio</h1>
 
-	<div class="config-block">
-		<Text {config} on:change={handleConfigChange} />
+	<div class="settings-container">
+		<div class="config-block">
+			<Text {config} on:change={handleConfigChange} />
+		</div>
+
+		<div class="config-block">
+			<PredefinedConfigSelect {config} on:change={handleConfigChange} />
+		</div>
+
+		<ToggleLabel expanded={settingsExpanded} on:toggle={handleSettingsToggle}>
+			Custom settings
+		</ToggleLabel>
+
+		{#if settingsExpanded}
+			<div class="config-block">
+				<ParticleSize {config} on:change={handleConfigChange} />
+			</div>
+
+			<div class="config-block">
+				<FontSize {config} on:change={handleConfigChange} />
+			</div>
+
+			<div class="config-block">
+				<ParticlesPerPixel {config} on:change={handleConfigChange} />
+			</div>
+
+			<div class="config-block">
+				<Color {config} on:change={handleConfigChange} />
+			</div>
+
+			<div class="config-block">
+				<Opacity {config} on:change={handleConfigChange} />
+			</div>
+
+			<h3>Movement</h3>
+
+			<div class="config-block">
+				<Sine {config} prefix="horz" on:change={handleConfigChange}>Horizontal sine</Sine>
+			</div>
+
+			<div class="config-block">
+				<Sine {config} prefix="vert" on:change={handleConfigChange}>Vertical sine</Sine>
+			</div>
+		{/if}
+		<div style="clear: both" />
 	</div>
-
-	<div class="config-block">
-		<PredefinedConfigSelect {config} on:change={handleConfigChange} />
-	</div>
-
-	<ToggleLabel expanded={settingsExpanded} on:toggle={handleSettingsToggle}>
-		Custom settings
-	</ToggleLabel>
-
-	{#if settingsExpanded}
-		<div class="config-block">
-			<ParticleSize {config} on:change={handleConfigChange} />
-		</div>
-
-		<div class="config-block">
-			<FontSize {config} on:change={handleConfigChange} />
-		</div>
-
-		<div class="config-block">
-			<ParticlesPerPixel {config} on:change={handleConfigChange} />
-		</div>
-
-		<div class="config-block">
-			<Color {config} on:change={handleConfigChange} />
-		</div>
-
-		<div class="config-block">
-			<Opacity {config} on:change={handleConfigChange} />
-		</div>
-
-		<h2>Movement</h2>
-
-		<div class="config-block">
-			<Sine {config} prefix="horz" on:change={handleConfigChange}>Horizontal sine</Sine>
-		</div>
-
-		<div class="config-block">
-			<Sine {config} prefix="vert" on:change={handleConfigChange}>Vertical sine</Sine>
-		</div>
-	{/if}
 </aside>
 <MenuToggle {expanded} on:toggle={handleToggle} />
