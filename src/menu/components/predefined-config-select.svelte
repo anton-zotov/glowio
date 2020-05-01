@@ -1,26 +1,27 @@
 <script>
 	import { createEventDispatcher, onMount } from 'svelte';
+	import { predefinedConfigs } from '../../predefined-configs';
 
 	export let config;
 
-	const customAnimationsKey = 'customAnimations';
+	const customConfigsKey = 'customConfigs';
 	const dispatch = createEventDispatcher();
 
-	let predefinedAnimations = {};
-	let customAnimations = {};
+	let customConfigs = {};
 	let selected;
 	let animationName = 'new amination';
 
 	onMount(() => {
-		customAnimations = JSON.parse(localStorage.getItem(customAnimationsKey) || '{}');
-		selected = Object.values(predefinedAnimations)[0];
+		customConfigs = JSON.parse(localStorage.getItem(customConfigsKey) || '{}');
+		Object.values(customConfigs).forEach(anim => (anim.isCustom = true));
+		selected = Object.values(predefinedConfigs)[0];
 		if (!selected) {
-			selected = Object.values(customAnimations)[0];
+			selected = Object.values(customConfigs)[0];
 		}
-		handleAnimationSelect();
+		handleConfigSelect();
 	});
 
-	function handleAnimationSelect() {
+	function handleConfigSelect() {
 		if (!selected) return;
 		animationName = selected.name;
 		Object.assign(config, selected);
@@ -28,23 +29,33 @@
 	}
 
 	function handleSave() {
-		customAnimations[animationName] = { ...config, name: animationName };
-		selected = customAnimations[animationName];
-		saveCustomAnimations();
+		customConfigs[animationName] = { ...filterConfig(config), name: animationName, isCustom: true };
+		selected = customConfigs[animationName];
+		saveCustomConfigs();
 	}
 
 	function handleDelete() {
-		delete customAnimations[selected.name];
-		selected = Object.values(customAnimations)[0];
+		delete customConfigs[selected.name];
+		selected = Object.values(customConfigs)[0];
 		if (!selected) {
-			selected = Object.values(predefinedAnimations)[0];
+			selected = Object.values(predefinedConfigs)[0];
 		}
-		customAnimations = customAnimations;
-		saveCustomAnimations();
+		customConfigs = customConfigs;
+		saveCustomConfigs();
+		handleConfigSelect();
 	}
 
-	function saveCustomAnimations() {
-		localStorage.setItem(customAnimationsKey, JSON.stringify(customAnimations));
+	function saveCustomConfigs() {
+		localStorage.setItem(customConfigsKey, JSON.stringify(customConfigs));
+	}
+
+	function filterConfig(config) {
+		const restrictedKeys = ['text'];
+		let filtered = { ...config };
+		for (let key of restrictedKeys) {
+			delete filtered[key];
+		}
+		return filtered;
 	}
 </script>
 
@@ -80,19 +91,19 @@
 <div class="component-container">
 	<label>Select animation</label>
 	<div class="config-select-container">
-		<select class="config-select" bind:value={selected} on:change={handleAnimationSelect}>
+		<select class="config-select" bind:value={selected} on:change={handleConfigSelect}>
 			<optgroup label="Predefined animations">
-				{#each Object.entries(predefinedAnimations) as [name, animation]}
+				{#each Object.entries(predefinedConfigs) as [name, animation]}
 					<option value={animation}>{name}</option>
 				{/each}
 			</optgroup>
 			<optgroup label="Custom animations">
-				{#each Object.entries(customAnimations) as [name, animation]}
+				{#each Object.entries(customConfigs) as [name, animation]}
 					<option value={animation}>{name}</option>
 				{/each}
 			</optgroup>
 		</select>
-		<button disabled={!selected} on:click={handleDelete}>Delete</button>
+		<button disabled={!selected || !selected.isCustom} on:click={handleDelete}>Delete</button>
 	</div>
 	<div class="config-select-container">
 		<label class="name-input-label" for="name-input">Name</label>
