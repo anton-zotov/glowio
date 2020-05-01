@@ -37,8 +37,8 @@ export function createScene(app) {
 		s = s + (Math.PI / 51) * 3;
 	}
 
-	function addParticle(x, y, config) {
-		const particle = createParticle(x, y, config);
+	function addParticle(x, y, config, instanceConfig) {
+		const particle = createParticle(x, y, config, instanceConfig);
 		particles.push(particle);
 		container.addChild(particle);
 	}

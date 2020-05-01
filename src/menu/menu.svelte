@@ -8,7 +8,7 @@
     import ParticlesPerPixel from './settings/particles-per-pixel';
     import Color from './settings/color';
     import Opacity from './settings/opacity';
-    import HorizontalSine from './movement/horizontal-sine';
+    import Sine from './components/sine';
 
     let expanded = true;
     let config = { ...defaultConfig };
@@ -71,7 +71,11 @@
 	<h2>Movement</h2>
 
     <div class="config-block">
-        <HorizontalSine {config} on:change={handleConfigChange} />
+		<Sine {config} prefix="horz" on:change={handleConfigChange}>Horizontal sine</Sine>
+    </div>
+
+    <div class="config-block">
+		<Sine {config} prefix="vert" on:change={handleConfigChange}>Vertical sine</Sine>
     </div>
 	
 </aside>

@@ -36,7 +36,7 @@ export function getTextMatrix({ text, fontSize }) {
     let centerX = x2 ? Math.round(x1 + width / 2) : 0;
     let centerY = y2 ? Math.round(y1 + height / 2) : 0;
 
-    return { x1, x2, centerX, centerY, width, textMatrix, pixels };
+    return { x1, x2, y1, y2, centerX, centerY, width, textMatrix, pixels };
 }
 
 function drawText(text, fontSize) {
