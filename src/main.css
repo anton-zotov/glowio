@@ -32,9 +32,12 @@ body {
 	width: 100%;
 }
 
+input {
+	height: 20px;
+}
+
 input[type="number"] {
 	width: 50px;
-	height: 20px;
 }
 
 input[type="range"] {

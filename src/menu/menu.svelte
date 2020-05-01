@@ -2,17 +2,18 @@
 	import { resizeTheater } from '../index';
 	import { updateConfig } from '../particle-system';
 	import { defaultConfig } from '../particle-config';
-	import MenuToggle from './menu-toggle';
+	import MenuToggle from './components/menu-toggle';
+	import Sine from './components/sine';
+	import ToggleLabel from './components/toggle-label';
+	import PredefinedConfigSelect from './components/predefined-config-select';
 	import Text from './settings/text';
 	import ParticleSize from './settings/particle-size';
 	import FontSize from './settings/font-size';
 	import ParticlesPerPixel from './settings/particles-per-pixel';
 	import Color from './settings/color';
 	import Opacity from './settings/opacity';
-	import Sine from './components/sine';
-	import ToggleLabel from './components/toggle-label';
 
-	let settingsExpanded = false;
+	let settingsExpanded = true;
 	let expanded = true;
 	let config = { ...defaultConfig };
 
@@ -26,6 +27,7 @@
 	}
 
 	function handleConfigChange() {
+		config = config;
 		updateConfig(config);
 	}
 </script>
@@ -53,6 +55,10 @@
 
 	<div class="config-block">
 		<Text {config} on:change={handleConfigChange} />
+	</div>
+
+	<div class="config-block">
+		<PredefinedConfigSelect {config} on:change={handleConfigChange} />
 	</div>
 
 	<ToggleLabel expanded={settingsExpanded} on:toggle={handleSettingsToggle}>

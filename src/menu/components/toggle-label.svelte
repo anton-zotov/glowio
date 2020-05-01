@@ -6,7 +6,6 @@
 	const dispatch = createEventDispatcher();
 
 	function handleClick() {
-		console.log('handleClick');
 		dispatch('toggle');
 	}
 </script>
