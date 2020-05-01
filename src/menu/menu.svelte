@@ -13,7 +13,7 @@
 	import Color from './settings/color';
 	import Opacity from './settings/opacity';
 
-	let settingsExpanded = true;
+	let settingsExpanded = false;
 	let expanded = true;
 	let config = { ...defaultConfig };
 

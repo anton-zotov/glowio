@@ -38,7 +38,7 @@
 			<RangeInput {config} property={prefix + 'SineAmplitude'} min={0} max={100} on:change />
 		</div>
 		<div class="row">
-			<label class="row-label">Perion</label>
+			<label class="row-label">Period</label>
 			<RangeInput {config} property={prefix + 'SinePeriod'} min={10} max={200} on:change />
 		</div>
 	{/if}
