@@ -51,7 +51,7 @@
 		}
 	}
 
-	.hidden {
+	#menu.hidden {
 		display: none;
 	}
 

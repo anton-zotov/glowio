@@ -18,7 +18,6 @@ export const predefinedConfigs = {
 		vertSineRandomizeAmplitude: false,
 		vertSineDelay: 'offsetY',
 		name: 'under water',
-		isCustom: true,
 	},
 	fire: {
 		particleSize: 25,
@@ -39,7 +38,6 @@ export const predefinedConfigs = {
 		vertSineRandomizeAmplitude: true,
 		vertSineDelay: 'offsetX',
 		name: 'fire',
-		isCustom: true,
 	},
 	'3d': {
 		particleSize: 15,
@@ -60,7 +58,6 @@ export const predefinedConfigs = {
 		vertSineRandomizeAmplitude: false,
 		vertSineDelay: 'offsetY',
 		name: '3d',
-		isCustom: true,
 	},
 	'whirling cloth': {
 		particleSize: 10,
