@@ -21,7 +21,7 @@
     }
 
     .expanded {
-        left: 237px;
+        left: 236px;
     }
 </style>
 

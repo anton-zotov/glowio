@@ -9,5 +9,5 @@
     {config}
     property={'particlePer100Pixels'}
     min={1}
-    max={1000}
+    max={500}
     on:change />
