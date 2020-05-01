@@ -1,29 +1,7 @@
 import { getTextMatrix } from './text-utils';
 import { createScene } from './scene';
 import { debounce } from './utils';
-
-export const defaultConfig = {
-	text: 'Hello glowio',
-	particleSize: 5,
-	fontSize: 100,
-	particlePer100Pixels: 50,
-	color: '#00ff90',
-	colorVariation: 5,
-	opacityMin: 60,
-	opacityMax: 90,
-
-	horzSineEnabled: true,
-	horzSineAmplitude: 10,
-	horzSinePeriod: 100,
-	horzSineRandomizeAmplitude: false,
-	horzSineDelay: "offsetY",
-
-	vertSineEnabled: false,
-	vertSineAmplitude: 10,
-	vertSinePeriod: 100,
-	vertSineRandomizeAmplitude: false,
-	vertSineDelay: "offsetX",
-};
+import { defaultConfig } from './particle-config';
 
 let config = { ...defaultConfig };
 let scene;

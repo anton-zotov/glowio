@@ -1,6 +1,7 @@
 <script>
     import { resizeTheater } from '../index';
-    import { defaultConfig, updateConfig } from '../particle-system';
+    import { updateConfig } from '../particle-system';
+    import { defaultConfig } from '../particle-config';
     import MenuToggle from './menu-toggle';
     import Text from './settings/text';
     import ParticleSize from './settings/particle-size';
