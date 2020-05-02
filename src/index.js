@@ -7,7 +7,9 @@ new Menu({
 	target: document.body,
 });
 
-const theater = document.getElementById('theater');
+const theater = document.createElement('main');
+theater.id = 'theater';
+document.body.appendChild(theater);
 const app = new PIXI.Application({
 	resizeTo: theater,
 });
