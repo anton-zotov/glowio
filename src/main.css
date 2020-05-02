@@ -21,7 +21,7 @@ h3 {
 	display: flex;
 	flex-direction: column;
 	width: 276px;
-	background-color: #ccc;
+	background-color: #d0d0d0;
 	max-width: 100vw;
 }
 
@@ -77,4 +77,11 @@ input[type="range"] {
 	width: 16px;
 	height: 16px;
 	margin-left: 10px;
+}
+
+.panel {
+	padding: 6px;
+	background-color: #ebebeb;
+	border: 1px solid #bbb;
+	border-radius: 8px;
 }

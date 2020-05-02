@@ -2,6 +2,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import RangeInput from '../components/range-input';
 	import CheckboxRow from '../components/checkbox-row';
+	import ToggleLabel from '../components/toggle-label';
 
 	export let config;
 	export let prefix;
@@ -12,12 +13,20 @@
 		config = config;
 		dispatch('change');
 	}
+
+	function handleToggle() {
+		config[prefix + 'Enabled'] = !config[prefix + 'Enabled'];
+		dispatch('change');
+	}
 </script>
 
-<div class="multi-line">
-	<CheckboxRow {config} property={prefix + 'Enabled'} on:change={handleChange}>
-		<slot />
-	</CheckboxRow>
+<div class="multi-line panel">
+	<ToggleLabel expanded={config[prefix + 'Enabled']} on:toggle={handleToggle}>
+		<div class="checkbox-row">
+			<slot />
+			<input type="checkbox" bind:checked={config[prefix + 'Enabled']} />
+		</div>
+	</ToggleLabel>
 	{#if config[prefix + 'Enabled']}
 		<div class="row">
 			<label class="row-label">Delay</label>

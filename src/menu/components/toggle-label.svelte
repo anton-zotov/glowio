@@ -12,8 +12,8 @@
 
 <style>
 	.label {
+		display: flex;
 		line-height: 20px;
-		padding-bottom: 10px;
 		user-select: none;
 	}
 	.icon {

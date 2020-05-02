@@ -34,9 +34,9 @@
 
 <style>
 	.title {
-		padding-bottom: 14px;
+		background-color: #c3c3c3;
 		padding-right: 32px;
-		font-size: 36px;
+		font-size: 35px;
 		color: #fff;
 		text-align: center;
 		animation: glow 0.8s ease-in-out infinite alternate;
@@ -55,17 +55,26 @@
 		display: none;
 	}
 
+	.panel-block,
 	.config-block {
-		padding-bottom: 10px;
+		padding-bottom: 4px;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 	}
 
+	.config-block {
+		padding-bottom: 10px;
+	}
+
 	.settings-container {
 		flex-grow: 1;
-		padding: 0 8px 8px 8px;
+		padding: 10px 8px 8px 8px;
 		overflow-y: auto;
+	}
+
+	h3 {
+		padding-top: 10px;
 	}
 </style>
 
@@ -86,45 +95,55 @@
 		</ToggleLabel>
 
 		{#if settingsExpanded}
-			<div class="config-block">
-				<ParticleSize {config} on:change={handleConfigChange} />
-			</div>
+			<div class="panel">
 
-			<div class="config-block">
-				<FontSize {config} on:change={handleConfigChange} />
-			</div>
+				<div class="config-block">
+					<ParticleSize {config} on:change={handleConfigChange} />
+				</div>
 
-			<div class="config-block">
-				<ParticlesPerPixel {config} on:change={handleConfigChange} />
-			</div>
+				<div class="config-block">
+					<FontSize {config} on:change={handleConfigChange} />
+				</div>
 
-			<div class="config-block">
-				<Color {config} on:change={handleConfigChange} />
-			</div>
+				<div class="config-block">
+					<ParticlesPerPixel {config} on:change={handleConfigChange} />
+				</div>
 
-			<div class="config-block">
-				<Opacity {config} on:change={handleConfigChange} />
+				<div class="config-block">
+					<Color {config} on:change={handleConfigChange} />
+				</div>
+
+				<div class="config-block">
+					<Opacity {config} on:change={handleConfigChange} />
+				</div>
 			</div>
 
 			<h3>Movement</h3>
 
-			<div class="config-block">
-				<MovementFunction {config} prefix="horzSine" on:change={handleConfigChange}>Horizontal sine</MovementFunction>
+			<div class="panel-block">
+				<MovementFunction {config} prefix="horzSine" on:change={handleConfigChange}>
+					Horizontal sine
+				</MovementFunction>
 			</div>
 
-			<div class="config-block">
-				<MovementFunction {config} prefix="vertSine" on:change={handleConfigChange}>Vertical sine</MovementFunction>
+			<div class="panel-block">
+				<MovementFunction {config} prefix="vertSine" on:change={handleConfigChange}>
+					Vertical sine
+				</MovementFunction>
 			</div>
 
-			<div class="config-block">
-				<MovementFunction {config} prefix="horzTan" on:change={handleConfigChange}>Horizontal tangent</MovementFunction>
+			<div class="panel-block">
+				<MovementFunction {config} prefix="horzTan" on:change={handleConfigChange}>
+					Horizontal tangent
+				</MovementFunction>
 			</div>
 
-			<div class="config-block">
-				<MovementFunction {config} prefix="vertTan" on:change={handleConfigChange}>Vertical tangent</MovementFunction>
+			<div class="panel-block">
+				<MovementFunction {config} prefix="vertTan" on:change={handleConfigChange}>
+					Vertical tangent
+				</MovementFunction>
 			</div>
 		{/if}
-		<div style="clear: both" />
 	</div>
 </aside>
 <MenuToggle {expanded} on:toggle={handleToggle} />
