@@ -48,7 +48,9 @@ module.exports = {
 		],
 	},
 	plugins: [
-		new HtmlWebpackPlugin(),
+		new HtmlWebpackPlugin({
+			title: 'Glowio'
+		}),
 		new CleanWebpackPlugin(),
 	]
 	// plugins: [
