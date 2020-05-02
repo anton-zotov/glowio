@@ -1,9 +1,8 @@
 import { getTextMatrix } from './text-utils';
 import { createScene } from './scene';
 import { debounce } from './utils';
-import { defaultConfig } from './particle-config';
 
-let config = { ...defaultConfig };
+let config = { };
 let scene;
 
 function doUpdate() {

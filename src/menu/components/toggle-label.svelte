@@ -15,6 +15,7 @@
 		display: flex;
 		line-height: 20px;
 		user-select: none;
+		align-items: center;
 	}
 	.icon {
 		display: inline-block;

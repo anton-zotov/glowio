@@ -1,7 +1,7 @@
 <script>
 	import { resizeTheater } from '../index';
 	import { updateConfig } from '../particle-system';
-	import { defaultConfig } from '../particle-config';
+	import { getRandomizedConfig } from '../randomize-config';
 	import MenuToggle from './components/menu-toggle';
 	import MovementFunction from './components/movement-function';
 	import ToggleLabel from './components/toggle-label';
@@ -15,7 +15,7 @@
 
 	let settingsExpanded = false;
 	let expanded = true;
-	let config = { ...defaultConfig };
+	let config = { text: 'Glowio' };
 
 	function handleToggle() {
 		expanded = !expanded;
@@ -28,6 +28,11 @@
 
 	function handleConfigChange() {
 		config = config;
+		updateConfig(config);
+	}
+
+	function handleRandomize() {
+		config = getRandomizedConfig(config);
 		updateConfig(config);
 	}
 </script>
@@ -76,6 +81,29 @@
 	h3 {
 		padding-top: 10px;
 	}
+
+	.label-with-button {
+		display: flex;
+		justify-content: space-between;
+		flex-grow: 1;
+		align-items: center;
+	}
+
+	.randomize-button {
+		padding: 4px 10px;
+		color: #fff;
+		background-color: #337ab7;
+		border: 1px solid #2e6da4;
+	}
+
+	.randomize-button:hover {
+		background-color: #286090;
+		border: 1px solid #204d74;
+	}
+
+	.custom-settings-toggle {
+		padding-bottom: 6px;
+	}
 </style>
 
 <aside id="menu" class={expanded ? '' : 'hidden'}>
@@ -90,9 +118,16 @@
 			<PredefinedConfigSelect {config} on:change={handleConfigChange} />
 		</div>
 
-		<ToggleLabel expanded={settingsExpanded} on:toggle={handleSettingsToggle}>
-			Custom settings
-		</ToggleLabel>
+		<div class="custom-settings-toggle">
+			<ToggleLabel expanded={settingsExpanded} on:toggle={handleSettingsToggle}>
+				<div class="label-with-button">
+					Custom settings
+					<button class="randomize-button" on:click|stopPropagation={handleRandomize}>
+						Randomize
+					</button>
+				</div>
+			</ToggleLabel>
+		</div>
 
 		{#if settingsExpanded}
 			<div class="panel">

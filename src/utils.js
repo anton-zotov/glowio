@@ -9,6 +9,14 @@ export function debounce(callback, wait) {
 	};
 }
 
+export function randomElement(arr) {
+	return arr[Math.floor(Math.random() * arr.length)];;
+}
+
+export function randomColor() {
+	return '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
+}
+
 export function colorVariation(colorString, variation) {
 	let baseColor = Number('0x' + colorString.slice(1));
 	let r = (baseColor & 0xff0000) >> 16;
