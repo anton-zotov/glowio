@@ -3,7 +3,7 @@
 	import { updateConfig } from '../particle-system';
 	import { defaultConfig } from '../particle-config';
 	import MenuToggle from './components/menu-toggle';
-	import Sine from './components/sine';
+	import MovementFunction from './components/movement-function';
 	import ToggleLabel from './components/toggle-label';
 	import PredefinedConfigSelect from './components/predefined-config-select';
 	import Text from './settings/text';
@@ -109,11 +109,19 @@
 			<h3>Movement</h3>
 
 			<div class="config-block">
-				<Sine {config} prefix="horz" on:change={handleConfigChange}>Horizontal sine</Sine>
+				<MovementFunction {config} prefix="horzSine" on:change={handleConfigChange}>Horizontal sine</MovementFunction>
 			</div>
 
 			<div class="config-block">
-				<Sine {config} prefix="vert" on:change={handleConfigChange}>Vertical sine</Sine>
+				<MovementFunction {config} prefix="vertSine" on:change={handleConfigChange}>Vertical sine</MovementFunction>
+			</div>
+
+			<div class="config-block">
+				<MovementFunction {config} prefix="horzTan" on:change={handleConfigChange}>Horizontal tangent</MovementFunction>
+			</div>
+
+			<div class="config-block">
+				<MovementFunction {config} prefix="vertTan" on:change={handleConfigChange}>Vertical tangent</MovementFunction>
 			</div>
 		{/if}
 		<div style="clear: both" />

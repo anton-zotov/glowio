@@ -8,15 +8,31 @@ export const defaultConfig = {
 	opacityMin: 1,
 	opacityMax: 50,
 
-	horzSineEnabled: true,
+	horzSineEnabled: false,
 	horzSineAmplitude: 10,
 	horzSinePeriod: 100,
 	horzSineRandomizeAmplitude: false,
+	horzSineModulo: false,
 	horzSineDelay: "offsetY",
 
 	vertSineEnabled: false,
 	vertSineAmplitude: 10,
 	vertSinePeriod: 100,
 	vertSineRandomizeAmplitude: false,
+	vertSineModulo: false,
 	vertSineDelay: "offsetX",
+
+	horzTanEnabled: false,
+	horzTanAmplitude: 10,
+	horzTanPeriod: 100,
+	horzTanRandomizeAmplitude: false,
+	horzTanModulo: false,
+	horzTanDelay: "offsetY",
+
+	vertTanEnabled: false,
+	vertTanAmplitude: 10,
+	vertTanPeriod: 100,
+	vertTanRandomizeAmplitude: false,
+	vertTanModulo: false,
+	vertTanDelay: "offsetX",
 };

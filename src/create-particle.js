@@ -15,42 +15,29 @@ export function createParticle(x, y, config, instanceConfig) {
 	particle.alpha = (config.opacityMin + Math.random() * (config.opacityMax - config.opacityMin)) / 100;
 	particle.tint = colorVariation(config.color, config.colorVariation);
 
-	/* ------ Sine start ------ */
-	particle.horzSine = {
-		amplitude: config.horzSineAmplitude,
-		delay: 0
-	};
-
-	if (config.horzSineRandomizeAmplitude) {
-		particle.horzSine.amplitude = Math.random() * config.horzSineAmplitude;
-	}
-
-	if (config.horzSineDelay) {
-		particle.horzSine.delay = instanceConfig[config.horzSineDelay];
-	}
-
-	/* ------ Vertical sine ------ */
-	particle.vertSine = {
-		amplitude: config.vertSineAmplitude,
-		delay: 0
-	};
-	if (config.vertSineRandomizeAmplitude) {
-		particle.vertSine.amplitude = Math.random() * config.vertSineAmplitude;
-	}
-
-	if (config.vertSineDelay) {
-		particle.vertSine.delay = instanceConfig[config.vertSineDelay];
-	}
-	/* ------ Sine end ------ */
-
-	// particle.vyMax = Math.random() * 4 - 1;
-	// particle.vx = 0;
-	// particle.vy = 0;
-
+	configParticleFunction(particle, 'horzSine', config, instanceConfig);
+	configParticleFunction(particle, 'vertSine', config, instanceConfig);
+	configParticleFunction(particle, 'horzTan', config, instanceConfig);
+	configParticleFunction(particle, 'vertTan', config, instanceConfig);
 
 	particle.update = updateParticle(config);
 
 	return particle;
+}
+
+function configParticleFunction(particle, functionPrefix, config, instanceConfig) {
+	particle[functionPrefix] = {
+		amplitude: config[functionPrefix + 'Amplitude'],
+		delay: 0
+	};
+
+	if (config[functionPrefix + 'RandomizeAmplitude']) {
+		particle[functionPrefix].amplitude = Math.random() * config[functionPrefix + 'Amplitude'];
+	}
+
+	if (config[functionPrefix + 'Delay']) {
+		particle[functionPrefix].delay = instanceConfig[config[functionPrefix + 'Delay']];
+	}
 }
 
 const updateParticle = config =>
@@ -60,11 +47,29 @@ const updateParticle = config =>
 		this.y = this.initY;
 
 		if (config.horzSineEnabled) {
-			this.x += Math.cos(((frame - this.horzSine.delay) * 2 * Math.PI) / config.horzSinePeriod) * this.horzSine.amplitude;
+			let dx = Math.sin(((frame - this.horzSine.delay) * 2 * Math.PI) / config.horzSinePeriod) * this.horzSine.amplitude;
+			if (config.horzSineModulo) dx = Math.abs(dx);
+			this.x += dx;
 		}
 
 		if (config.vertSineEnabled) {
-			this.y += Math.cos(((frame - this.vertSine.delay) * 2 * Math.PI) / config.vertSinePeriod) * this.vertSine.amplitude;
+			let dy = Math.sin(((frame - this.vertSine.delay) * 2 * Math.PI) / config.vertSinePeriod) * this.vertSine.amplitude;
+			if (config.vertSineModulo) dy = Math.abs(dy);
+			this.y += dy;
 		}
+
+		if (config.horzTanEnabled) {
+			let dx = Math.tan(((frame - this.horzTan.delay) * 2 * Math.PI) / config.horzTanPeriod) * this.horzTan.amplitude;
+			if (config.horzTanModulo) dx = Math.abs(dx);
+			this.x += dx;
+		}
+
+		if (config.vertTanEnabled) {
+			let dy = Math.tan(((frame - this.vertTan.delay) * 2 * Math.PI) / config.vertTanPeriod) * this.vertTan.amplitude;
+			if (config.vertTanModulo) dy = Math.abs(dy);
+			this.y += dy;
+		}
+
+		// this.x += Math.acos()
 		// this.vy = Math.sin(s + this.offset) * (this.vyMax - this.vyMax / 2);
 	};
