@@ -9,7 +9,7 @@ export function getTextMatrix({ text, fontSize }) {
     drawText(text, fontSize);
 
     const imageData = ctx.getImageData(0, 0, canvasWidth, canvasHeight).data;
-    const textMatrix = [];
+    const matrix = [];
     let x1 = null;
     let x2 = null;
     let y1 = null;
@@ -17,10 +17,10 @@ export function getTextMatrix({ text, fontSize }) {
     let pixels = 0;
 
     for (let x = 0; x < canvasWidth; x++) {
-        textMatrix.push([]);
+        matrix.push([]);
         for (let y = 0; y < canvasHeight; y++) {
             let bit = hasColor(x, y, canvasWidth, imageData);
-            textMatrix[x].push(bit);
+            matrix[x].push(bit);
             if (bit) {
                 if (x1 === null) x1 = x;
                 x2 = Math.max(x, x2);
@@ -36,7 +36,7 @@ export function getTextMatrix({ text, fontSize }) {
     let centerX = x2 ? Math.round(x1 + width / 2) : 0;
     let centerY = y2 ? Math.round(y1 + height / 2) : 0;
 
-    return { x1, x2, y1, y2, centerX, centerY, width, textMatrix, pixels };
+    return { x1, x2, y1, y2, centerX, centerY, width, matrix, pixels };
 }
 
 function drawText(text, fontSize) {
@@ -45,11 +45,6 @@ function drawText(text, fontSize) {
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
     ctx.fillStyle = 'white';
     ctx.fillText(text, 0, canvasHeight - canvasBottonPadding);
-}
-
-function getColor(x, y, width, imageData) {
-    const redPos = y * (width * 4) + x * 4;
-    return [imageData[redPos], imageData[redPos + 1], imageData[redPos + 2]];
 }
 
 function hasColor(x, y, width, imageData) {

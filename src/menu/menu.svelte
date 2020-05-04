@@ -5,6 +5,7 @@
 	import MenuToggle from './components/menu-toggle';
 	import MovementFunction from './components/movement-function';
 	import ToggleLabel from './components/toggle-label';
+	import Radio from './components/radio';
 	import PredefinedConfigSelect from './components/predefined-config-select';
 	import Text from './settings/text';
 	import ParticleSize from './settings/particle-size';
@@ -15,7 +16,7 @@
 
 	let settingsExpanded = false;
 	let expanded = true;
-	let config = { text: 'Glowio' };
+	let config = { text: 'Glowio', type: 'text' };
 
 	function handleToggle() {
 		expanded = !expanded;
@@ -111,8 +112,18 @@
 
 	<div class="settings-container">
 		<div class="config-block">
-			<Text {config} on:change={handleConfigChange} />
+			<Radio
+				{config}
+				on:change={handleConfigChange}
+				property={'type'}
+				options={[['face', 'Face'], ['text', 'Text']]} />
 		</div>
+
+		{#if config.type === 'text'}
+			<div class="config-block">
+				<Text {config} on:change={handleConfigChange} />
+			</div>
+		{/if}
 
 		<div class="config-block">
 			<PredefinedConfigSelect {config} on:change={handleConfigChange} />

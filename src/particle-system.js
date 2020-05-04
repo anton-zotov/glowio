@@ -1,20 +1,21 @@
 import { getTextMatrix } from './text-utils';
+import { getImageMatrix } from './image-utils';
 import { createScene } from './scene';
 import { debounce } from './utils';
 
-let config = { };
+let config = {};
 let scene;
 
 function doUpdate() {
 	scene.reset();
-	displayText();
+	display();
 }
 
 export const scheduleUpdate = debounce(doUpdate, 500);
 
 export function init(app) {
 	scene = createScene(app);
-	displayText();
+	display();
 }
 
 export function updateConfig(newConfig) {
@@ -26,17 +27,22 @@ export function updateScene() {
 	scene.update();
 }
 
+function display() {
+	if (config.type === 'text') displayText();
+	else displayImage();
+}
+
 function displayText() {
-	const { textMatrix, centerX, centerY, height, x1, y1 } = getTextMatrix(config);
+	const { matrix, centerX, centerY } = getTextMatrix(config);
 	const particlePerPixel = config.particlePer100Pixels / 100;
 	const screenCX = scene.getWidth() / 2;
 	const screenCY = scene.getHeight() / 2;
 	const offsetX = screenCX - centerX;
 	const offsetY = screenCY - centerY;
 
-	for (let x = 0; x < textMatrix.length; x++) {
-		for (let y = 0; y < textMatrix[0].length; y++) {
-			if (textMatrix[x][y]) {
+	for (let x = 0; x < matrix.length; x++) {
+		for (let y = 0; y < matrix[0].length; y++) {
+			if (matrix[x][y]) {
 				let chance = particlePerPixel;
 				while (chance > 0) {
 					if (chance >= 1 || chance >= Math.random()) {
@@ -44,7 +50,35 @@ function displayText() {
 							x + offsetX,
 							y + offsetY,
 							config,
-							{ offsetX: x - x1, offsetY: y - y1 }
+							{ offsetX: x, offsetY: y }
+						);
+						chance -= 1;
+					} else break;
+				}
+			}
+		}
+	}
+}
+
+async function displayImage() {
+	const { matrix, centerX, centerY } = await getImageMatrix(config);
+	const particlePerPixel = 1;
+	const screenCX = scene.getWidth() / 2;
+	const screenCY = scene.getHeight() / 2;
+	const offsetX = screenCX - centerX;
+	const offsetY = screenCY - centerY;
+
+	for (let x = 0; x < matrix.length; x++) {
+		for (let y = 0; y < matrix[0].length; y++) {
+			if (matrix[x][y]) {
+				let chance = particlePerPixel;
+				while (chance > 0) {
+					if (chance >= 1 || chance >= Math.random()) {
+						scene.addParticle(
+							x + offsetX,
+							y + offsetY,
+							config,
+							{ offsetX: x, offsetY: y, color: matrix[x][y] }
 						);
 						chance -= 1;
 					} else break;

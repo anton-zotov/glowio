@@ -13,7 +13,9 @@ export function createParticle(x, y, config, instanceConfig) {
 	particle.initY = y;
 	particle.scale.set(config.particleSize / particleImageSize);
 	particle.alpha = (config.opacityMin + Math.random() * (config.opacityMax - config.opacityMin)) / 100;
-	particle.tint = colorVariation(config.color, config.colorVariation);
+	
+	if (instanceConfig.color) particle.tint = instanceConfig.color;
+	else particle.tint = colorVariation(config.color, config.colorVariation);
 
 	configParticleFunction(particle, 'horzSine', config, instanceConfig);
 	configParticleFunction(particle, 'vertSine', config, instanceConfig);
