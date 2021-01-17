@@ -15,7 +15,7 @@
 	import Opacity from './settings/opacity';
 
 	let settingsExpanded = false;
-	let expanded = true;
+	let expanded = false;
 	let config = { text: 'Glowio', type: 'cat' };
 
 	function handleToggle() {
