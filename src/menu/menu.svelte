@@ -16,7 +16,7 @@
 
 	let settingsExpanded = false;
 	let expanded = true;
-	let config = { text: 'Glowio', type: 'text' };
+	let config = { text: 'Glowio', type: 'cat' };
 
 	function handleToggle() {
 		expanded = !expanded;
@@ -116,7 +116,7 @@
 				{config}
 				on:change={handleConfigChange}
 				property={'type'}
-				options={[['face', 'Face'], ['text', 'Text']]} />
+				options={[['cat', 'Cat'], ['face', 'Face'], ['text', 'Text']]} />
 		</div>
 
 		{#if config.type === 'text'}

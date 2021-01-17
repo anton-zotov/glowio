@@ -1,4 +1,10 @@
 import face from './assets/face_s.png';
+import cat from './assets/cat.jpg';
+
+const images = {
+	face,
+	cat
+};
 
 function loadImage(source) {
 	return new Promise(resolve => {
@@ -15,8 +21,9 @@ function getImageData(image) {
 	return ctx.getImageData(0, 0, image.width, image.height).data;
 }
 
-export async function getImageMatrix() {
-	const image = await loadImage(face);
+export async function getImageMatrix(imageName) {
+	const imageFile = images[imageName];
+	const image = await loadImage(imageFile);
 	const imageData = getImageData(image);
 	const matrix = [];
 	let x1 = null;

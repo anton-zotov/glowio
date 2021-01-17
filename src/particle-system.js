@@ -15,7 +15,7 @@ export const scheduleUpdate = debounce(doUpdate, 500);
 
 export function init(app) {
 	scene = createScene(app);
-	display();
+	// display();
 }
 
 export function updateConfig(newConfig) {
@@ -29,7 +29,7 @@ export function updateScene() {
 
 function display() {
 	if (config.type === 'text') displayText();
-	else displayImage();
+	else displayImage(config.type);
 }
 
 function displayText() {
@@ -60,8 +60,8 @@ function displayText() {
 	}
 }
 
-async function displayImage() {
-	const { matrix, centerX, centerY } = await getImageMatrix(config);
+async function displayImage(imageName) {
+	const { matrix, centerX, centerY } = await getImageMatrix(imageName);
 	const particlePerPixel = 1;
 	const screenCX = scene.getWidth() / 2;
 	const screenCY = scene.getHeight() / 2;
