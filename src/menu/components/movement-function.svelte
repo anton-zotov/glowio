@@ -48,7 +48,7 @@
 		</div>
 		<div class="row">
 			<label class="row-label">Period</label>
-			<RangeInput {config} property={prefix + 'Period'} min={10} max={200} on:change />
+			<RangeInput {config} property={prefix + 'Period'} min={10} max={500} on:change />
 		</div>
 	{/if}
 </div>

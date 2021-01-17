@@ -65,8 +65,8 @@ async function displayImage(imageName) {
 	const particlePerPixel = 1;
 	const screenCX = scene.getWidth() / 2;
 	const screenCY = scene.getHeight() / 2;
-	const offsetX = screenCX - centerX * 2;
-	const offsetY = screenCY - centerY * 2;
+	const offsetX = screenCX - centerX * 3;
+	const offsetY = screenCY - centerY * 3;
 
 	for (let x = 0; x < matrix.length; x++) {
 		for (let y = 0; y < matrix[0].length; y++) {
@@ -75,8 +75,8 @@ async function displayImage(imageName) {
 				while (chance > 0) {
 					if (chance >= 1 || chance >= Math.random()) {
 						scene.addParticle(
-							x * 2 + offsetX,
-							y * 2 + offsetY,
+							x * 3 + offsetX,
+							y * 3 + offsetY,
 							config,
 							{ offsetX: x, offsetY: y, color: matrix[x][y] }
 						);
