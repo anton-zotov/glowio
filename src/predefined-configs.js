@@ -28,11 +28,11 @@ export const predefinedConfigs = {
 		horzTanDelay: "",
 		vertTanEnabled: true,
 		vertTanAmplitude: 52,
-		vertTanPeriod: 500,
+		vertTanPeriod: 1000,
 		vertTanRandomizeAmplitude: true,
 		vertTanModulo: false,
 		vertTanDelay: "",
-		isCustom: true
+		isCustom: false,
 	},
 	spring: {
 		particleSize: 10,
@@ -67,7 +67,7 @@ export const predefinedConfigs = {
 		vertTanRandomizeAmplitude: true,
 		vertTanModulo: false,
 		vertTanDelay: '',
-		isCustom: true,
+		isCustom: false,
 	},
 	fire: {
 		particleSize: 25,
@@ -102,7 +102,7 @@ export const predefinedConfigs = {
 		vertTanRandomizeAmplitude: true,
 		vertTanModulo: false,
 		vertTanDelay: 'offsetY',
-		isCustom: true,
+		isCustom: false,
 	},
 	'3d': {
 		particleSize: 15,
@@ -137,7 +137,7 @@ export const predefinedConfigs = {
 		vertTanRandomizeAmplitude: true,
 		vertTanModulo: false,
 		vertTanDelay: 'offsetY',
-		isCustom: true,
+		isCustom: false,
 	},
 	'under water': {
 		particleSize: 20,
@@ -172,7 +172,7 @@ export const predefinedConfigs = {
 		vertTanRandomizeAmplitude: true,
 		vertTanModulo: false,
 		vertTanDelay: 'offsetY',
-		isCustom: true,
+		isCustom: false,
 	},
 	'whirling cloth': {
 		particleSize: 10,
@@ -207,7 +207,7 @@ export const predefinedConfigs = {
 		vertTanRandomizeAmplitude: true,
 		vertTanModulo: false,
 		vertTanDelay: 'offsetY',
-		isCustom: true,
+		isCustom: false,
 	},
 	shimmering: {
 		particleSize: 10,
@@ -242,7 +242,7 @@ export const predefinedConfigs = {
 		vertTanRandomizeAmplitude: true,
 		vertTanModulo: false,
 		vertTanDelay: 'offsetY',
-		isCustom: true,
+		isCustom: false,
 	},
 	'white noise': {
 		particleSize: 7,
@@ -277,7 +277,7 @@ export const predefinedConfigs = {
 		vertTanRandomizeAmplitude: true,
 		vertTanModulo: false,
 		vertTanDelay: 'offsetY',
-		isCustom: true,
+		isCustom: false,
 	},
 	'sand storm': {
 		particleSize: 7,
@@ -312,7 +312,7 @@ export const predefinedConfigs = {
 		vertTanRandomizeAmplitude: true,
 		vertTanModulo: false,
 		vertTanDelay: 'offsetY',
-		isCustom: true,
+		isCustom: false,
 	},
 	'neon dance': {
 		particleSize: 2,
@@ -347,7 +347,7 @@ export const predefinedConfigs = {
 		vertTanRandomizeAmplitude: false,
 		vertTanModulo: false,
 		vertTanDelay: 'offsetY',
-		isCustom: true,
+		isCustom: false,
 	},
 	'japan lights': {
 		particleSize: 28,
@@ -382,7 +382,7 @@ export const predefinedConfigs = {
 		vertTanRandomizeAmplitude: false,
 		vertTanModulo: false,
 		vertTanDelay: 'offsetX',
-		isCustom: true,
+		isCustom: false,
 	},
 	marshmallow: {
 		particleSize: 36,
@@ -417,7 +417,7 @@ export const predefinedConfigs = {
 		vertTanRandomizeAmplitude: false,
 		vertTanModulo: true,
 		vertTanDelay: 'offsetX',
-		isCustom: true,
+		isCustom: false,
 	},
 	lava: {
 		particleSize: 46,
@@ -452,7 +452,7 @@ export const predefinedConfigs = {
 		vertTanRandomizeAmplitude: true,
 		vertTanModulo: true,
 		vertTanDelay: 'offsetY',
-		isCustom: true,
+		isCustom: false,
 	},
 	emotions: {
 		particleSize: 13,
@@ -487,6 +487,6 @@ export const predefinedConfigs = {
 		vertTanRandomizeAmplitude: false,
 		vertTanModulo: true,
 		vertTanDelay: 'offsetY',
-		isCustom: true,
+		isCustom: false,
 	},
 };
