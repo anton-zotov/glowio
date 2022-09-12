@@ -15,7 +15,6 @@ export const scheduleUpdate = debounce(doUpdate, 500);
 
 export function init(app) {
 	scene = createScene(app);
-	// display();
 }
 
 export function updateConfig(newConfig) {
@@ -32,13 +31,11 @@ function display() {
 	else displayImage(config.type);
 }
 
-function displayText() {
-	const { matrix, centerX, centerY } = getTextMatrix(config);
-	const particlePerPixel = config.particlePer100Pixels / 100;
+function buildScene({ matrix, centerX, centerY, particlePerPixel, scale, withColor }) {
 	const screenCX = scene.getWidth() / 2;
 	const screenCY = scene.getHeight() / 2;
-	const offsetX = screenCX - centerX;
-	const offsetY = screenCY - centerY;
+	const offsetX = screenCX - centerX * scale;
+	const offsetY = screenCY - centerY * scale;
 
 	for (let x = 0; x < matrix.length; x++) {
 		for (let y = 0; y < matrix[0].length; y++) {
@@ -47,10 +44,10 @@ function displayText() {
 				while (chance > 0) {
 					if (chance >= 1 || chance >= Math.random()) {
 						scene.addParticle(
-							x + offsetX,
-							y + offsetY,
+							x * scale + offsetX,
+							y * scale + offsetY,
 							config,
-							{ offsetX: x, offsetY: y }
+							{ offsetX: x, offsetY: y, color: withColor ? matrix[x][y] : null }
 						);
 						chance -= 1;
 					} else break;
@@ -60,30 +57,13 @@ function displayText() {
 	}
 }
 
+function displayText() {
+	const { matrix, centerX, centerY } = getTextMatrix(config);
+	const particlePerPixel = config.particlePer100Pixels / 100;
+	buildScene({ matrix, centerX, centerY, particlePerPixel, scale: 1, withColor: false });
+}
+
 async function displayImage(imageName) {
 	const { matrix, centerX, centerY } = await getImageMatrix(imageName);
-	const particlePerPixel = 1;
-	const screenCX = scene.getWidth() / 2;
-	const screenCY = scene.getHeight() / 2;
-	const offsetX = screenCX - centerX * 3;
-	const offsetY = screenCY - centerY * 3;
-
-	for (let x = 0; x < matrix.length; x++) {
-		for (let y = 0; y < matrix[0].length; y++) {
-			if (matrix[x][y]) {
-				let chance = particlePerPixel;
-				while (chance > 0) {
-					if (chance >= 1 || chance >= Math.random()) {
-						scene.addParticle(
-							x * 3 + offsetX,
-							y * 3 + offsetY,
-							config,
-							{ offsetX: x, offsetY: y, color: matrix[x][y] }
-						);
-						chance -= 1;
-					} else break;
-				}
-			}
-		}
-	}
+	buildScene({ matrix, centerX, centerY, particlePerPixel: 1, scale: 3, withColor: true });
 }
